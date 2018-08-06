@@ -21,7 +21,24 @@ public class UrlValidatorTest extends TestCase {
    
    public void testManualTest()
    {
-//You can use this function to implement your manual testing	   
+   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   // Read from entries within UrlsToVerify.txt
+	   Scanner scanner = new Scanner(getClass().getResourceAsStream("UrlsToVerify.txt"));
+	   String s = new String();
+
+	   while(scanner.hasNextLine()){
+		   String[] input_details = new String[2];
+		   s = scanner.nextLine();
+		   input_details = s.split("\t");
+		   String result;
+		   
+		   if (urlVal.isValid(input_details[0])) {
+			   result = "valid";
+		   } else {
+			   result = "invalid";
+		   }
+		   System.out.println(input_details[0] + " expected: " + input_details[1] + " actual: " + result);		   
+	   }   
 	   
    }
    
